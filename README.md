@@ -1,6 +1,6 @@
 # US Housing Price Prediction MLOps
 
-Production-ready machine learning project for predicting US housing prices from structured property features. The original notebook analysis is preserved, and the reusable workflow now lives in a tested Python package with validation, feature engineering, statistical tests, model training, metrics, and CI.
+Production-ready machine learning project for predicting US housing prices from structured property features. The coursework notebook workflow is preserved as smaller numbered notebooks, and the reusable workflow now lives in a tested Python package with validation, feature engineering, statistical tests, model training, metrics, and CI.
 
 ## Academic Context
 
@@ -14,7 +14,8 @@ This project was completed for Singapore Polytechnic, School of Computing, Diplo
 ## What Changed
 
 - Normalized the mislabeled data file from `housing_price_data.xls` to `data/raw/housing_price_data.csv`.
-- Moved original coursework artifacts into `notebooks/` and `reports/presentations/`.
+- Split the original monolithic notebook into smaller focused notebooks under `notebooks/`.
+- Moved original coursework presentation artifacts into `reports/presentations/`.
 - Added a reusable `src/us_housing_price_prediction` package.
 - Added leakage-safe preprocessing through a scikit-learn `Pipeline`.
 - Added feature engineering that drops redundant source fields after deriving richer features.
@@ -30,7 +31,7 @@ This project was completed for Singapore Polytechnic, School of Computing, Diplo
 |-- data/raw/housing_price_data.csv
 |-- docs/
 |-- models/
-|-- notebooks/original_regression_analysis.ipynb
+|-- notebooks/
 |-- reports/
 |-- src/us_housing_price_prediction/
 |-- tests/
@@ -51,6 +52,16 @@ python -m us_housing_price_prediction train
 ```
 
 After training, the model is written to `models/housing-price-regressor.joblib` and metrics are written to `reports/metrics.json`.
+
+## Notebook Workflow
+
+The analysis notebooks are intentionally small and numbered:
+
+1. `notebooks/00_project_overview.ipynb`
+2. `notebooks/01_data_validation_and_eda.ipynb`
+3. `notebooks/02_feature_engineering.ipynb`
+4. `notebooks/03_model_training_and_evaluation.ipynb`
+5. `notebooks/04_prediction_demo.ipynb`
 
 ## Prediction Example
 
@@ -94,6 +105,7 @@ The training command reports:
 
 - [MLOps Guide](docs/MLOPS.md)
 - [Academic Context](docs/ACADEMIC_CONTEXT.md)
+- [Notebook Guide](notebooks/README.md)
 - [Data Card](docs/DATA_CARD.md)
 - [Model Card](docs/MODEL_CARD.md)
 - [Project Structure](docs/PROJECT_STRUCTURE.md)

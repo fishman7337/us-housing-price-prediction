@@ -17,14 +17,14 @@
   },
   "cross_validation": {
     "r2_mean": 0.5361967429593275,
-    "r2_std": 0.10624126352562335,
-    "mae_mean": 91683.62905951393,
+    "r2_std": 0.10624126352562333,
+    "mae_mean": 91683.62905951394,
     "rmse_mean": 125859.775297679
   },
   "residual_test": {
     "test": "paired_t_test_absolute_error",
-    "statistic": -5.7821928348288525,
-    "p_value": 7.252361493326061e-08,
+    "statistic": -5.782192834828853,
+    "p_value": 7.25236149332603e-08,
     "mean_error_delta": -63077.720954608594,
     "interpretation": "Negative mean_error_delta means the candidate model has lower absolute error than the baseline on the same rows."
   },

@@ -7,4 +7,5 @@
 - Added pytest suite and GitHub Actions CI.
 - Added MLOps documentation, data card, model card, DVC metadata, and contribution docs.
 - Added academic context for the Singapore Polytechnic ST1511 CA1 Part B submission.
+- Split the original monolithic notebook into smaller workflow notebooks.
 - Reorganized raw data, notebook, and presentation artifacts into standard folders.
