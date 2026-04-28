@@ -1,6 +1,6 @@
 # Notebook Guide
 
-The original all-in-one analysis notebook is maintained for academic traceability, and the workflow has also been split into smaller notebooks so each stage is easier to open, review, and rerun.
+The original all-in-one analysis notebook is maintained for academic traceability, and the workflow has also been split into smaller notebooks so each stage is easier to open, review, and rerun. The modular notebooks intentionally use the same academic markdown style as the original notebook, with section headings, rationale, interpretation, and conclusion notes around the code.
 
 ## Original Academic Notebook
 
@@ -16,4 +16,4 @@ The original all-in-one analysis notebook is maintained for academic traceabilit
 
 ## Design
 
-Reusable code belongs in `src/us_housing_price_prediction`. The modular notebooks should stay narrative and lightweight, while the original notebook remains the complete historical academic write-up.
+Reusable code belongs in `src/us_housing_price_prediction`. The modular notebooks should keep the original report-style explanation while using reusable package code, and the original notebook remains the complete historical academic write-up.

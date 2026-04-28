@@ -56,7 +56,7 @@ After training, the model is written to `models/housing-price-regressor.joblib` 
 
 ## Notebook Workflow
 
-The analysis notebooks are intentionally small and numbered:
+The analysis notebooks are numbered and use the same academic markdown style as the original notebook:
 
 Full academic narrative:
 

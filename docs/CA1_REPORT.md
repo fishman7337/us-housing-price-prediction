@@ -100,6 +100,6 @@ The model is suitable for coursework, learning, and prototype analytics. It is n
 Two notebook formats are intentionally maintained:
 
 - `notebooks/original_regression_analysis.ipynb` keeps the full academic write-up and original reasoning style.
-- `notebooks/00` to `04` provide smaller executable notebooks that reuse production code.
+- `notebooks/00` to `04` provide smaller executable notebooks that reuse production code while keeping original-style academic markdown explanations.
 
 This allows the project to satisfy academic documentation expectations while also meeting modern maintainability expectations.

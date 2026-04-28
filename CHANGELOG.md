@@ -9,5 +9,6 @@
 - Added academic context for the Singapore Polytechnic ST1511 CA1 Part B submission.
 - Split the original monolithic notebook into smaller workflow notebooks.
 - Restored and maintained the full original academic notebook alongside the modular notebooks.
+- Expanded modular notebook markdown to match the original academic explanation style.
 - Added CA1 report and quality assurance documentation.
 - Reorganized raw data, notebook, and presentation artifacts into standard folders.
