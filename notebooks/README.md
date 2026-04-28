@@ -1,8 +1,12 @@
 # Notebook Guide
 
-The original all-in-one analysis notebook has been split into smaller notebooks so each stage is easier to open, review, and rerun.
+The original all-in-one analysis notebook is maintained for academic traceability, and the workflow has also been split into smaller notebooks so each stage is easier to open, review, and rerun.
 
-## Order
+## Original Academic Notebook
+
+`original_regression_analysis.ipynb` is the full CA1 Part B narrative notebook. Keep it when preserving the submission record, lecturer-facing explanation, and original step-by-step reasoning.
+
+## Modular Workflow Order
 
 1. `00_project_overview.ipynb` - coursework context and workflow map.
 2. `01_data_validation_and_eda.ipynb` - schema validation, data quality checks, EDA, and feature significance tests.
@@ -12,4 +16,4 @@ The original all-in-one analysis notebook has been split into smaller notebooks 
 
 ## Design
 
-Reusable code belongs in `src/us_housing_price_prediction`. Notebooks should stay narrative and lightweight.
+Reusable code belongs in `src/us_housing_price_prediction`. The modular notebooks should stay narrative and lightweight, while the original notebook remains the complete historical academic write-up.

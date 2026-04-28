@@ -1,6 +1,6 @@
 # US Housing Price Prediction MLOps
 
-Production-ready machine learning project for predicting US housing prices from structured property features. The coursework notebook workflow is preserved as smaller numbered notebooks, and the reusable workflow now lives in a tested Python package with validation, feature engineering, statistical tests, model training, metrics, and CI.
+Production-ready machine learning project for predicting US housing prices from structured property features. The full coursework notebook is preserved for academic traceability, a smaller numbered notebook workflow is provided for maintainability, and the reusable workflow lives in a tested Python package with validation, feature engineering, statistical tests, model training, metrics, and CI.
 
 ## Academic Context
 
@@ -21,6 +21,7 @@ This project was completed for Singapore Polytechnic, School of Computing, Diplo
 - Added feature engineering that drops redundant source fields after deriving richer features.
 - Added p-value diagnostics for raw features and a paired t-test against the baseline model.
 - Added pytest tests, packaging metadata, CI, DVC metadata, docs, and contribution guidelines.
+- Preserved the original full academic notebook alongside the split notebook workflow.
 
 ## Project Structure
 
@@ -56,6 +57,12 @@ After training, the model is written to `models/housing-price-regressor.joblib` 
 ## Notebook Workflow
 
 The analysis notebooks are intentionally small and numbered:
+
+Full academic narrative:
+
+- `notebooks/original_regression_analysis.ipynb`
+
+Maintainable workflow:
 
 1. `notebooks/00_project_overview.ipynb`
 2. `notebooks/01_data_validation_and_eda.ipynb`
@@ -105,9 +112,11 @@ The training command reports:
 
 - [MLOps Guide](docs/MLOPS.md)
 - [Academic Context](docs/ACADEMIC_CONTEXT.md)
+- [CA1 Report Summary](docs/CA1_REPORT.md)
 - [Notebook Guide](notebooks/README.md)
 - [Data Card](docs/DATA_CARD.md)
 - [Model Card](docs/MODEL_CARD.md)
+- [Quality Assurance](docs/QUALITY_ASSURANCE.md)
 - [Project Structure](docs/PROJECT_STRUCTURE.md)
 - [Experiments](docs/EXPERIMENTS.md)
 - [Contributing](CONTRIBUTING.md)

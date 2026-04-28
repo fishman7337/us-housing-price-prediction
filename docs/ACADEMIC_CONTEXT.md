@@ -28,4 +28,4 @@ Adjunct Lecturer Tai Hock Lin (Andy)
 
 ## Notes
 
-The original notebook workflow is preserved as smaller numbered notebooks, and the presentation artifact is kept under `reports/presentations`. The current package, tests, CI, and documentation expand the project into a more reproducible MLOps-style structure while keeping the coursework context intact.
+The original full notebook is maintained under `notebooks/original_regression_analysis.ipynb`, the same workflow is also available as smaller numbered notebooks, and the presentation artifact is kept under `reports/presentations`. The current package, tests, CI, and documentation expand the project into a more reproducible MLOps-style structure while keeping the coursework context intact.
