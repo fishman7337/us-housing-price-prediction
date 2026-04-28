@@ -4,6 +4,10 @@
 
 Voting regressor combining Ridge, Random Forest, and Gradient Boosting regressors.
 
+## Project Context
+
+This model was developed for Singapore Polytechnic's AI & Machine Learning (`ST1511`) CA1 Part B under the Diploma in Applied AI & Analytics.
+
 ## Intended Use
 
 Estimate housing prices from structured property attributes for experimentation, coursework, and prototype analytics.

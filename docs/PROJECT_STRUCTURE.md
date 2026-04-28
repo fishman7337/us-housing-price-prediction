@@ -2,7 +2,7 @@
 
 ```text
 data/raw/                       Immutable source data
-docs/                           Project, data, model, and MLOps documentation
+docs/                           Academic, project, data, model, and MLOps documentation
 models/                         Local trained model artifacts, ignored by Git
 notebooks/                      Exploratory and legacy notebooks
 reports/                        Metrics, figures, and presentation artifacts

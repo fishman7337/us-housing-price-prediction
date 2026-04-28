@@ -2,6 +2,15 @@
 
 Production-ready machine learning project for predicting US housing prices from structured property features. The original notebook analysis is preserved, and the reusable workflow now lives in a tested Python package with validation, feature engineering, statistical tests, model training, metrics, and CI.
 
+## Academic Context
+
+This project was completed for Singapore Polytechnic, School of Computing, Diploma in Applied AI & Analytics, under the AI & Machine Learning module (`ST1511`) CA1 Part B.
+
+- Student: Goh Kun Ming, DAAA student
+- Academic year: AY24/25
+- Semester: Year 1 Semester 2
+- Lecturer: Adjunct Lecturer Tai Hock Lin (Andy)
+
 ## What Changed
 
 - Normalized the mislabeled data file from `housing_price_data.xls` to `data/raw/housing_price_data.csv`.
@@ -84,6 +93,7 @@ The training command reports:
 ## Documentation
 
 - [MLOps Guide](docs/MLOPS.md)
+- [Academic Context](docs/ACADEMIC_CONTEXT.md)
 - [Data Card](docs/DATA_CARD.md)
 - [Model Card](docs/MODEL_CARD.md)
 - [Project Structure](docs/PROJECT_STRUCTURE.md)
