@@ -11,4 +11,5 @@
 - Restored and maintained the full original academic notebook alongside the modular notebooks.
 - Expanded modular notebook markdown to match the original academic explanation style.
 - Added CA1 report and quality assurance documentation.
+- Added explicit requirements files, security testing documentation, Bandit, pip-audit, CodeQL, and Dependabot configuration.
 - Reorganized raw data, notebook, and presentation artifacts into standard folders.

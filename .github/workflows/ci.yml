@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main", "codex/**"]
   pull_request:
     branches: ["main"]
 
@@ -33,7 +33,12 @@ jobs:
         run: python -m ruff check .
 
       - name: Test
-        run: python -m pytest
+        run: >
+          python -m pytest
+          --cov=us_housing_price_prediction
+          --cov-report=term-missing
+          --cov-report=xml
+          --cov-fail-under=75
 
       - name: Validate data
         run: python -m us_housing_price_prediction validate-data
@@ -44,3 +49,27 @@ jobs:
           --model-path models/ci-housing-price-regressor.joblib
           --metrics-path reports/ci-metrics.json
           --min-r2 0.45
+
+  security:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install security tools
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+
+      - name: Static security scan
+        run: python -m bandit -r src -c pyproject.toml
+
+      - name: Dependency vulnerability scan
+        run: python -m pip_audit -r requirements.txt

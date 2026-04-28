@@ -3,8 +3,8 @@
 ## Current Quality Controls
 
 - Source code is packaged under `src/us_housing_price_prediction`.
-- Reusable logic is tested with pytest.
-- CI runs linting, tests, data validation, and a training smoke test.
+- Reusable logic is tested with pytest and a minimum coverage gate.
+- CI runs linting, tests with coverage, data validation, a training smoke test, static security scanning, dependency vulnerability scanning, and CodeQL analysis.
 - The model pipeline prevents target and identifier leakage.
 - Feature engineering runs inside the pipeline.
 - Data validation enforces schema and domain constraints.
@@ -15,7 +15,9 @@
 
 ```bash
 python -m ruff check .
-python -m pytest
+python -m pytest --cov=us_housing_price_prediction --cov-report=term-missing --cov-fail-under=75
+python -m bandit -r src -c pyproject.toml
+python -m pip_audit -r requirements.txt
 python -m us_housing_price_prediction validate-data
 python -m us_housing_price_prediction train --min-r2 0.45
 ```

@@ -1,7 +1,7 @@
 {
   "metrics": {
     "r2": 0.5312464163247848,
-    "mae": 113312.64601786846,
+    "mae": 113312.64601786845,
     "mse": 23693479169.192413,
     "rmse": 153926.86305253027,
     "mape": 0.24398245521493614,
@@ -17,7 +17,7 @@
   },
   "cross_validation": {
     "r2_mean": 0.5361967429593276,
-    "r2_std": 0.1062412635256234,
+    "r2_std": 0.10624126352562335,
     "mae_mean": 91683.62905951393,
     "rmse_mean": 125859.775297679
   },
@@ -25,7 +25,7 @@
     "test": "paired_t_test_absolute_error",
     "statistic": -5.782192834828852,
     "p_value": 7.252361493326082e-08,
-    "mean_error_delta": -63077.720954608594,
+    "mean_error_delta": -63077.72095460861,
     "interpretation": "Negative mean_error_delta means the candidate model has lower absolute error than the baseline on the same rows."
   },
   "feature_significance": [

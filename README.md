@@ -48,6 +48,8 @@ This project was completed for Singapore Polytechnic, School of Computing, Diplo
 python -m pip install --upgrade pip
 python -m pip install -e ".[dev,notebook]"
 python -m pytest
+python -m bandit -r src -c pyproject.toml
+python -m pip_audit -r requirements.txt
 python -m us_housing_price_prediction validate-data
 python -m us_housing_price_prediction train
 ```
@@ -117,6 +119,7 @@ The training command reports:
 - [Data Card](docs/DATA_CARD.md)
 - [Model Card](docs/MODEL_CARD.md)
 - [Quality Assurance](docs/QUALITY_ASSURANCE.md)
+- [Security Testing](docs/SECURITY_TESTING.md)
 - [Project Structure](docs/PROJECT_STRUCTURE.md)
 - [Experiments](docs/EXPERIMENTS.md)
 - [Contributing](CONTRIBUTING.md)
