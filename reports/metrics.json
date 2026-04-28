@@ -1,0 +1,77 @@
+{
+  "metrics": {
+    "r2": 0.5312464163247848,
+    "mae": 113312.64601786845,
+    "mse": 23693479169.192413,
+    "rmse": 153926.86305253027,
+    "mape": 0.24398245521493614,
+    "explained_variance": 0.5383395245391058
+  },
+  "baseline_metrics": {
+    "r2": -0.10157635832095036,
+    "mae": 176390.36697247706,
+    "mse": 55679950848.623856,
+    "rmse": 235965.99511078678,
+    "mape": 0.36713494214859604,
+    "explained_variance": 0.0
+  },
+  "cross_validation": {
+    "r2_mean": 0.5361967429593276,
+    "r2_std": 0.10624126352562335,
+    "mae_mean": 91683.62905951393,
+    "rmse_mean": 125859.775297679
+  },
+  "residual_test": {
+    "test": "paired_t_test_absolute_error",
+    "statistic": -5.782192834828852,
+    "p_value": 7.252361493326082e-08,
+    "mean_error_delta": -63077.72095460861,
+    "interpretation": "Negative mean_error_delta means the candidate model has lower absolute error than the baseline on the same rows."
+  },
+  "feature_significance": [
+    {
+      "feature": "house_area_sqm",
+      "test": "pearson_correlation",
+      "statistic": 0.5359973457780801,
+      "p_value": 7.388225401521612e-42,
+      "significant_at_alpha": true
+    },
+    {
+      "feature": "toilets",
+      "test": "pearson_correlation",
+      "statistic": 0.5175453394550111,
+      "p_value": 1.139321837512574e-38,
+      "significant_at_alpha": true
+    },
+    {
+      "feature": "stories",
+      "test": "pearson_correlation",
+      "statistic": 0.42071236618861674,
+      "p_value": 8.668397383953089e-25,
+      "significant_at_alpha": true
+    },
+    {
+      "feature": "bedrooms",
+      "test": "pearson_correlation",
+      "statistic": 0.36649402577386847,
+      "p_value": 9.0803018558118e-19,
+      "significant_at_alpha": true
+    },
+    {
+      "feature": "renovation_status",
+      "test": "one_way_anova",
+      "statistic": 28.27206844716458,
+      "p_value": 2.0928668857951646e-12,
+      "significant_at_alpha": true
+    },
+    {
+      "feature": "city",
+      "test": "one_way_anova",
+      "statistic": 1.2580670742912652,
+      "p_value": 0.28543258423293444,
+      "significant_at_alpha": false
+    }
+  ],
+  "rows": 545,
+  "target": "price_usd"
+}
