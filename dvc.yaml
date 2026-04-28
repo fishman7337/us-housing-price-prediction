@@ -1,0 +1,16 @@
+stages:
+  validate_data:
+    cmd: python -m us_housing_price_prediction validate-data --data-path data/raw/housing_price_data.csv
+    deps:
+      - data/raw/housing_price_data.csv
+      - src/us_housing_price_prediction/data.py
+  train:
+    cmd: python -m us_housing_price_prediction train --data-path data/raw/housing_price_data.csv --model-path models/housing-price-regressor.joblib --metrics-path reports/metrics.json
+    deps:
+      - data/raw/housing_price_data.csv
+      - src/us_housing_price_prediction
+    outs:
+      - models/housing-price-regressor.joblib
+    metrics:
+      - reports/metrics.json:
+          cache: false
