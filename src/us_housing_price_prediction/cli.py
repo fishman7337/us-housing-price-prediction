@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 
 import pandas as pd
@@ -20,6 +21,27 @@ from us_housing_price_prediction.modeling import (
     save_model,
     train_and_evaluate,
 )
+
+
+def _finite_float(value: str) -> float:
+    """Parse one finite floating-point command-line value.
+
+    Args:
+        value: Raw command-line value.
+
+    Returns:
+        Parsed finite floating-point value.
+
+    Raises:
+        argparse.ArgumentTypeError: If the value is invalid or non-finite.
+    """
+    try:
+        parsed = float(value)
+    except ValueError as error:
+        raise argparse.ArgumentTypeError("must be a finite number") from error
+    if not math.isfinite(parsed):
+        raise argparse.ArgumentTypeError("must be a finite number")
+    return parsed
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -43,7 +65,7 @@ def build_parser() -> argparse.ArgumentParser:
     train_parser.add_argument("--metrics-path", type=Path, default=DEFAULT_METRICS_PATH)
     train_parser.add_argument(
         "--min-r2",
-        type=float,
+        type=_finite_float,
         default=None,
         help="Optional quality gate for test-set R2.",
     )
@@ -72,23 +94,27 @@ def _validate_data(args: argparse.Namespace) -> int:
 
 def _train(args: argparse.Namespace) -> int:
     model, result = train_and_evaluate(data_path=args.data_path)
-    save_model(model, args.model_path)
-    save_metrics(result, args.metrics_path)
+
+    measured_r2 = result.metrics["r2"]
+    if not math.isfinite(measured_r2):
+        print("R2 quality gate failed: measured R2 must be finite.")
+        return 2
+    if args.min_r2 is not None and measured_r2 < args.min_r2:
+        print(f"R2 quality gate failed: {measured_r2:.4f} < {args.min_r2:.4f}")
+        return 2
+
+    model_path = save_model(model, args.model_path)
+    metrics_path = save_metrics(result, args.metrics_path)
 
     output = {
-        "model_path": str(args.model_path),
-        "metrics_path": str(args.metrics_path),
+        "model_path": str(model_path),
+        "metrics_path": str(metrics_path),
         "metrics": result.metrics,
         "baseline_metrics": result.baseline_metrics,
         "cross_validation": result.cross_validation,
         "residual_test": result.residual_test,
     }
     print(json.dumps(output, indent=2))
-
-    if args.min_r2 is not None and result.metrics["r2"] < args.min_r2:
-        print(f"R2 quality gate failed: {result.metrics['r2']:.4f} < {args.min_r2:.4f}")
-        return 2
-
     return 0
 
 
