@@ -23,6 +23,11 @@ from us_housing_price_prediction.modeling import (
 
 
 def build_parser() -> argparse.ArgumentParser:
+    """Build the command-line parser for validation, training, and prediction.
+
+    Returns:
+        Configured top-level argument parser.
+    """
     parser = argparse.ArgumentParser(
         prog="us-housing-price-prediction",
         description="Train and use the US housing price prediction pipeline.",
@@ -81,9 +86,7 @@ def _train(args: argparse.Namespace) -> int:
     print(json.dumps(output, indent=2))
 
     if args.min_r2 is not None and result.metrics["r2"] < args.min_r2:
-        print(
-            f"R2 quality gate failed: {result.metrics['r2']:.4f} < {args.min_r2:.4f}"
-        )
+        print(f"R2 quality gate failed: {result.metrics['r2']:.4f} < {args.min_r2:.4f}")
         return 2
 
     return 0
@@ -109,6 +112,14 @@ def _predict(args: argparse.Namespace) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    """Run the selected housing-price workflow.
+
+    Args:
+        argv: Optional argument list. Uses process arguments when omitted.
+
+    Returns:
+        Process exit code; non-zero indicates an invalid command or failed quality gate.
+    """
     parser = build_parser()
     args = parser.parse_args(argv)
 

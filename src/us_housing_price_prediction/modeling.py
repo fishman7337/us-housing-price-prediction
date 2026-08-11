@@ -55,6 +55,7 @@ class TrainingResult:
     target: str = TARGET_COLUMN
 
     def to_dict(self) -> dict[str, object]:
+        """Return a JSON-serializable representation of the training result."""
         return asdict(self)
 
 
@@ -67,7 +68,6 @@ def _one_hot_encoder() -> OneHotEncoder:
 
 def build_preprocessor() -> ColumnTransformer:
     """Build preprocessing that is fitted only inside the training pipeline."""
-
     numeric_pipeline = Pipeline(
         steps=[
             ("imputer", SimpleImputer(strategy="median")),
@@ -97,7 +97,6 @@ def build_preprocessor() -> ColumnTransformer:
 
 def build_regressor(random_state: int = RANDOM_STATE) -> VotingRegressor:
     """Build the ensemble regressor used for the production pipeline."""
-
     return VotingRegressor(
         estimators=[
             ("ridge", Ridge(alpha=10.0)),
@@ -131,7 +130,6 @@ def build_pipeline(
     random_state: int = RANDOM_STATE,
 ) -> Pipeline:
     """Build a leakage-safe model pipeline."""
-
     return Pipeline(
         steps=[
             ("feature_engineering", HousingFeatureEngineer(drop_source_features)),
@@ -146,7 +144,6 @@ def build_pipeline(
 
 def build_baseline_pipeline() -> Pipeline:
     """Build a median baseline with the same preprocessing contract."""
-
     return build_pipeline(regressor=DummyRegressor(strategy="median"))
 
 
@@ -155,7 +152,6 @@ def evaluate_regression(
     y_pred: pd.Series | np.ndarray,
 ) -> dict[str, float]:
     """Return common regression metrics."""
-
     return {
         "r2": float(r2_score(y_true, y_pred)),
         "mae": float(mean_absolute_error(y_true, y_pred)),
@@ -175,7 +171,6 @@ def cross_validate_pipeline(
     random_state: int = RANDOM_STATE,
 ) -> dict[str, float]:
     """Run reproducible cross-validation and summarize performance."""
-
     cv = KFold(n_splits=cv_splits, shuffle=True, random_state=random_state)
     scores = cross_validate(
         pipeline,
@@ -204,7 +199,6 @@ def train_and_evaluate(
     random_state: int = RANDOM_STATE,
 ) -> tuple[Pipeline, TrainingResult]:
     """Train the model and return the fitted pipeline plus evaluation artifacts."""
-
     df = load_housing_data(data_path)
     X_train, X_test, y_train, y_test = make_train_test_split(
         df,
@@ -247,7 +241,6 @@ def train_and_evaluate(
 
 def save_model(model: Pipeline, path: str | Path = DEFAULT_MODEL_PATH) -> Path:
     """Persist a fitted model pipeline."""
-
     model_path = Path(path)
     model_path.parent.mkdir(parents=True, exist_ok=True)
     joblib.dump(model, model_path)
@@ -256,13 +249,11 @@ def save_model(model: Pipeline, path: str | Path = DEFAULT_MODEL_PATH) -> Path:
 
 def load_model(path: str | Path = DEFAULT_MODEL_PATH) -> Pipeline:
     """Load a persisted model pipeline."""
-
     return joblib.load(path)
 
 
 def save_metrics(result: TrainingResult, path: str | Path = DEFAULT_METRICS_PATH) -> Path:
     """Write training metrics and diagnostics to JSON."""
-
     metrics_path = Path(path)
     metrics_path.parent.mkdir(parents=True, exist_ok=True)
     metrics_path.write_text(json.dumps(result.to_dict(), indent=2), encoding="utf-8")

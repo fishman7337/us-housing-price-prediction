@@ -36,7 +36,6 @@ def run_feature_significance_tests(
     Numeric features use Pearson correlation. Categorical features use one-way
     ANOVA across categories.
     """
-
     clean_df = clean_housing_data(df)
     rows: list[dict[str, object]] = []
 
@@ -66,9 +65,7 @@ def run_feature_significance_tests(
             }
         )
 
-    return pd.DataFrame(rows).sort_values("p_value", na_position="last").reset_index(
-        drop=True
-    )
+    return pd.DataFrame(rows).sort_values("p_value", na_position="last").reset_index(drop=True)
 
 
 def paired_error_t_test(
@@ -77,7 +74,6 @@ def paired_error_t_test(
     baseline_predictions: pd.Series | np.ndarray,
 ) -> dict[str, object]:
     """Compare absolute prediction errors with a paired t-test."""
-
     y_true_array = np.asarray(y_true, dtype=float)
     candidate_error = np.abs(y_true_array - np.asarray(candidate_predictions, dtype=float))
     baseline_error = np.abs(y_true_array - np.asarray(baseline_predictions, dtype=float))

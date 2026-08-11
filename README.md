@@ -2,6 +2,15 @@
 
 Production-ready machine learning project for predicting US housing prices from structured property features. The full coursework notebook is preserved for academic traceability, a smaller numbered notebook workflow is provided for maintainability, and the reusable workflow lives in a tested Python package with validation, feature engineering, statistical tests, model training, metrics, and CI.
 
+## Evidence and interpretation
+
+| Evidence-backed measure | Current repository evidence |
+| --- | --- |
+| Current ensemble | **3 estimators**: Ridge, Random Forest, and Gradient Boosting. |
+| CI acceptance gate | Training smoke tests require at least **0.45 R²**, while the test suite enforces **75%** minimum code coverage. |
+
+The qualitative outcome is a leakage-aware, reproducible regression workflow with validation, feature engineering, cross-validation, and persisted artifacts. The thresholds are engineering gates, not a claim of real-world deployment or a published best-model score.
+
 ## Academic Context
 
 This project was completed for Singapore Polytechnic, School of Computing, Diploma in Applied AI & Analytics, under the AI & Machine Learning module (`ST1511`) CA1 Part B.
