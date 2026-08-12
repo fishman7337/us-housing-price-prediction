@@ -26,7 +26,6 @@ class DataValidationError(ValueError):
 
 def load_housing_data(path: str | Path | None = None) -> pd.DataFrame:
     """Load the housing data from CSV and return a validated canonical dataframe."""
-
     data_path = Path(path) if path is not None else DEFAULT_DATA_PATH
     if not data_path.exists():
         raise FileNotFoundError(f"Data file not found: {data_path}")
@@ -37,16 +36,13 @@ def load_housing_data(path: str | Path | None = None) -> pd.DataFrame:
 
 def clean_housing_data(raw: pd.DataFrame) -> pd.DataFrame:
     """Normalize columns, data types, categories, and duplicate rows."""
-
     df = raw.copy()
     df.columns = [str(column).strip() for column in df.columns]
     df = df.rename(columns=RAW_TO_CANONICAL_COLUMNS)
 
     missing_columns = sorted(set(REQUIRED_COLUMNS) - set(df.columns))
     if missing_columns:
-        raise DataValidationError(
-            "Missing required columns: " + ", ".join(missing_columns)
-        )
+        raise DataValidationError("Missing required columns: " + ", ".join(missing_columns))
 
     df = df[REQUIRED_COLUMNS].copy()
 
@@ -67,9 +63,7 @@ def clean_housing_data(raw: pd.DataFrame) -> pd.DataFrame:
     df["stories"] = df["stories"].astype("int64")
 
     df["city"] = df["city"].astype(str).str.strip()
-    df["renovation_status"] = (
-        df["renovation_status"].astype(str).str.strip().str.lower()
-    )
+    df["renovation_status"] = df["renovation_status"].astype(str).str.strip().str.lower()
 
     df = df.drop_duplicates().reset_index(drop=True)
     validate_housing_data(df)
@@ -78,12 +72,9 @@ def clean_housing_data(raw: pd.DataFrame) -> pd.DataFrame:
 
 def validate_housing_data(df: pd.DataFrame) -> None:
     """Validate schema and domain rules for a canonical housing dataframe."""
-
     missing_columns = sorted(set(REQUIRED_COLUMNS) - set(df.columns))
     if missing_columns:
-        raise DataValidationError(
-            "Missing required columns: " + ", ".join(missing_columns)
-        )
+        raise DataValidationError("Missing required columns: " + ", ".join(missing_columns))
 
     errors: list[str] = []
     positive_columns = {
@@ -103,10 +94,7 @@ def validate_housing_data(df: pd.DataFrame) -> None:
     allowed_renovation_statuses = {"furnished", "semi-furnished", "unfurnished"}
     unknown_statuses = set(df["renovation_status"]) - allowed_renovation_statuses
     if unknown_statuses:
-        errors.append(
-            "unknown renovation_status values: "
-            + ", ".join(sorted(unknown_statuses))
-        )
+        errors.append("unknown renovation_status values: " + ", ".join(sorted(unknown_statuses)))
 
     if df.isna().any().any():
         null_columns = df.columns[df.isna().any()].tolist()
@@ -118,7 +106,6 @@ def validate_housing_data(df: pd.DataFrame) -> None:
 
 def split_features_target(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
     """Return model features and target without identifier or target leakage."""
-
     clean_df = clean_housing_data(df)
     X = clean_df[FEATURE_SOURCE_COLUMNS].copy()
     y = clean_df[TARGET_COLUMN].copy()
@@ -132,14 +119,12 @@ def make_train_test_split(
     random_state: int = RANDOM_STATE,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.Series, pd.Series]:
     """Create a reproducible train/test split from a canonical dataframe."""
-
     X, y = split_features_target(df)
     return train_test_split(X, y, test_size=test_size, random_state=random_state)
 
 
 def ensure_columns(df: pd.DataFrame, columns: Iterable[str]) -> None:
     """Raise a clear error if a dataframe is missing expected columns."""
-
     missing = sorted(set(columns) - set(df.columns))
     if missing:
         raise DataValidationError("Missing columns: " + ", ".join(missing))

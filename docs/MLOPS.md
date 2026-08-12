@@ -16,6 +16,9 @@ python -m us_housing_price_prediction validate-data
 python -m us_housing_price_prediction train --min-r2 0.45
 ```
 
+When the optional quality gate fails, the command exits without persisting the
+candidate model or metrics, preventing a failed candidate from replacing prior artifacts.
+
 ## CI
 
 GitHub Actions runs linting, tests, data validation, and a training smoke test on Python 3.10, 3.11, and 3.12.
